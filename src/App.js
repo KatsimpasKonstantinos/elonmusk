@@ -15,6 +15,11 @@ async function getCounter() {
   updateCounter(response.data);
 }
 
+  useEffect(() => {
+    getCounter();
+  }, [counter]);
+
+  
 async function putCounter() {
   const response = await fetch(workerURL, {
     method: 'PUT',
