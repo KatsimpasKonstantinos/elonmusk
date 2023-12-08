@@ -9,7 +9,7 @@ function App() {
 
 async function getCounter() {
   const response = await fetch(workerURL, {
-    method: 'POST',
+    method: 'GET',
   });
   console.log(response);
   updateCounter(await consumeStream(response));
