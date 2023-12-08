@@ -28,7 +28,7 @@ async function putCounter() {
           No.
         </h1>
         <p> People waiting: {counter} </p>
-        <button onClick="putCounter()"> Wait </button>
+        <button onClick={() => putCounter()}> Wait </button>
       </header>
     </div>
   );
