@@ -11,6 +11,7 @@ async function getCounter() {
   const response = await fetch(workerURL, {
     method: 'POST',
   });
+  console.log(response);
   updateCounter(response.data);
 }
 
