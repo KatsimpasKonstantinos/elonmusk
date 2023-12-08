@@ -28,7 +28,7 @@ async function putCounter() {
 }
 
 async function consumeStream(response) {
-  return await reponse.text()
+  return await response.text()
 }
   
   return (
