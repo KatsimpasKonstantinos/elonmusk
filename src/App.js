@@ -16,14 +16,14 @@ function App() {
 
 const workerURL = "https://elonmuskdeathwaiters.konsti032003.workers.dev/";
 
-function getCounter() {
+async function getCounter() {
   const response = await fetch(workerURL, {
     method: 'POST',
   });
   return response.data;
 }
 
-function updateCounter() {
+async function updateCounter() {
   const response = await fetch(workerURL, {
     method: 'PUT',
   });
