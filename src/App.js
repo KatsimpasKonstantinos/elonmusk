@@ -12,19 +12,19 @@ async function getCounter() {
     method: 'POST',
   });
   console.log(response);
-  updateCounter(consumeStream(response));
+  updateCounter(await consumeStream(response));
 }
 
   useEffect(() => {
     getCounter();
-  }, [counter]);
+  }, []);
 
   
 async function putCounter() {
   const response = await fetch(workerURL, {
     method: 'PUT',
   });
-  updateCounter(consumeStream(response));
+  updateCounter(await consumeStream(response));
 }
 
 async function consumeStream(response) {
