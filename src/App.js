@@ -12,7 +12,7 @@ async function getCounter() {
     method: 'POST',
   });
   console.log(response);
-  updateCounter(response.data);
+  updateCounter(consumeStream(response));
 }
 
   useEffect(() => {
@@ -24,7 +24,11 @@ async function putCounter() {
   const response = await fetch(workerURL, {
     method: 'PUT',
   });
-  updateCounter(response.data);
+  updateCounter(consumeStream(response));
+}
+
+async function consumeStream(response) {
+  return await reponse.text()
 }
   
   return (
