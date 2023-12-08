@@ -10,7 +10,7 @@ function App() {
   async function getCounter() {
     try {
       const response = await fetch(workerURL, {
-        method: 'POST',
+        method: 'GET',
       });
       setCounter(await consumeStream(response));
     } catch (error) {
@@ -33,9 +33,6 @@ function App() {
       setCounter(await consumeStream(response));
     } catch (error) {
       console.error('Error updating counter:', error);
-    } finally {
-      // Re-enable the button after the request is complete
-      setButtonDisabled(false);
     }
   }
 
