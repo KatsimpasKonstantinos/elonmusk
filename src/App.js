@@ -4,20 +4,8 @@ import { useState, useEffect } from "react";
 
 function App() {
   let [counter, updateCounter] = useState(0);
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1>
-          No.
-        </h1>
-        <p> People waiting: {counter} </p>
-        <button onClick="putCounter()"> Wait </button>
-      </header>
-    </div>
-  );
-}
 
-const workerURL = "https://elonmuskdeathwaiters.konsti032003.workers.dev/";
+  const workerURL = "https://elonmuskdeathwaiters.konsti032003.workers.dev/";
 
 async function getCounter() {
   const response = await fetch(workerURL, {
@@ -32,5 +20,20 @@ async function putCounter() {
   });
   updateCounter(response.data);
 }
+  
+  return (
+    <div className="App">
+      <header className="App-header">
+        <h1>
+          No.
+        </h1>
+        <p> People waiting: {counter} </p>
+        <button onClick="putCounter()"> Wait </button>
+      </header>
+    </div>
+  );
+}
+
+
 
 export default App;
