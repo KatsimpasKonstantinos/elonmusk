@@ -43,7 +43,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>No.</h1>
+        <marquee><h1>No.</h1></marquee>
         <p>People waiting: {counter}</p>
         <button onClick={() => putCounter()} disabled={buttonDisabled} className="wait-button">
           Wait
