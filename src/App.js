@@ -7,7 +7,7 @@ import Dead from "./Dead.png";
 function App() {
   const [counter, setCounter] = useState(0);
   const [buttonDisabled, setButtonDisabled] = useState(false);
-  const isDead = true;
+  const isDead = false;
 
   const workerURL = "https://elonmuskdeathwaiters.konsti032003.workers.dev/";
 
