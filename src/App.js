@@ -24,7 +24,10 @@ function App() {
         const pageData = await pageResponse.json();
         const pageContent = pageData.parse.text["*"];
 
-        const isDeceased = pageContent.includes('He died');
+        const isPosition = pageContent.indexOf(" is ");
+        const wasPosition = pageContent.indexOf(" was ");
+        console.log("is: " + isPosition + " was: " + wasPosition);
+        const isDeceased = isPosition >= wasPosition;
         console.log(isDeceased);
         setIsDead(isDeceased);
       } catch (error) {
