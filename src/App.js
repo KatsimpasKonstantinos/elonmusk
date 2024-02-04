@@ -7,7 +7,34 @@ import Dead from "./Dead.png";
 function App() {
   const [counter, setCounter] = useState(0);
   const [buttonDisabled, setButtonDisabled] = useState(false);
-  const isDead = false;
+  var [isDead, setIsDead] = useState();
+  const celebrityName = "Elon Musk";
+
+  useEffect(() => {
+    async function checkCelebrityStatus(name) {
+      const url = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(name)}&format=json&origin=*`;
+
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        const pageTitle = data.query.search[0].title;
+
+        const pageUrl = `https://en.wikipedia.org/w/api.php?action=parse&page=${encodeURIComponent(pageTitle)}&format=json&origin=*`;
+        const pageResponse = await fetch(pageUrl);
+        const pageData = await pageResponse.json();
+        const pageContent = pageData.parse.text["*"];
+
+        const isDeceased = pageContent.includes('He died');
+        console.log(isDeceased);
+        setIsDead(isDeceased);
+      } catch (error) {
+        console.error("Error fetching data from Wikipedia:", error);
+        setIsDead(false);
+      }
+    }
+
+    checkCelebrityStatus(celebrityName);
+  }, [celebrityName]);
 
   const workerURL = "https://elonmuskdeathwaiters.konsti032003.workers.dev/";
 
@@ -28,7 +55,6 @@ function App() {
 
   async function putCounter() {
     try {
-      // Disable the button to prevent multiple clicks
       setButtonDisabled(true);
 
       const response = await fetch(workerURL, {
@@ -44,6 +70,7 @@ function App() {
     return await response.text();
   }
 
+
   return (
     <div className="App">
       <header className="App-header">
@@ -55,6 +82,7 @@ function App() {
           />
         </div>
         <h1 className={"neon-text-glowing"}>{isDead ? "Yes." : "No."}</h1>
+        <h2 className={"neon-text-glowing"}>{celebrityName + (isDead ? " is probably Dead :D" : " is probably NOT Dead")}</h2>
         <p className={"neon-text"}>People waiting: {counter}</p>
         <button onClick={() => putCounter()} disabled={buttonDisabled} className="neon-button">
           Wait
