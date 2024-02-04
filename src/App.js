@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import './App.css';
 import NotDead from "./NotDead.png";
 import Dead from "./Dead.png";
-import How from "./How";
 
 
 function App() {
