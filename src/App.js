@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import './App.css';
 import NotDead from "./NotDead.png";
 import Dead from "./Dead.png";
+import How from "./How";
 
 
 function App() {
@@ -54,11 +55,18 @@ function App() {
 
   useEffect(() => {
     getCounter();
-  }, []);
+  }, [counter]);
 
   async function putCounter() {
     try {
+      console.log("pressed: " + localStorage.getItem("pressed"))
+      if (localStorage.getItem("pressed")) {
+        setButtonDisabled(true);
+        return;
+      }
+
       setButtonDisabled(true);
+      localStorage.setItem("pressed", true);
 
       const response = await fetch(workerURL, {
         method: 'PUT',
@@ -85,7 +93,7 @@ function App() {
           />
         </div>
         <h1 className={"neon-text-glowing"}>{isDead ? "Yes." : "No."}</h1>
-        <h2 className={"neon-text-glowing"}>{celebrityName + (isDead ? " is probably Dead :D" : " is probably NOT Dead")}</h2>
+        <h2 className={"neon-text-glowing"}>{celebrityName + " is probably " + (isDead ? "Dead :D" : "NOT Dead")}</h2>
         <p className={"neon-text"}>People waiting: {counter}</p>
         <button onClick={() => putCounter()} disabled={buttonDisabled} className="neon-button">
           Wait
