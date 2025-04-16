@@ -25,9 +25,40 @@ function App() {
   const workerURL = "https://elonmuskdeathwaiters.konsti032003.workers.dev/"
 
   useEffect(() => {
-    fetch(workerURL, { method: 'GET' })
-      .then(data => setCounter(data.count ?? '?'));
-  }, []);
+    fetchCounter()
+  }, [])
+
+  async function fetchCounter() {
+    try {
+      const response = await fetch(workerURL)
+      if (!response.ok) {
+        throw new Error('Network response was not ok')
+      }
+      setCounter(await response.text())
+    } catch (error) {
+      console.error('Error fetching counter:', error)
+    }
+  }
+
+  async function handleSubmit(event) {
+    event.preventDefault()
+    try {
+      const response = await fetch(workerURL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      })
+      if (!response.ok) {
+        throw new Error('Failed to submit email')
+      }
+      setStatus('Successfully joined the waitlist!')
+    } catch (error) {
+      console.error('Error submitting email:', error)
+      setStatus('Failed to join the waitlist. Please try again.')
+    }
+  }
 
   return (
     <div className="App">
@@ -50,10 +81,18 @@ function App() {
         <h1>No</h1>
         <p>People Waiting: <span id="counter">{counter}</span></p>
         <p>Be the first one to know when he is dead</p>
-        <form id="waitlist-form">
-          <input type="email" name="email" placeholder="Your email..." required />
+        <form id="waitlist-form" onSubmit={handleSubmit}>
+          <input
+            type="email"
+            name="email"
+            placeholder="Your email..."
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
           <button type="submit">Join Waitlist</button>
         </form>
+        {status && <p>{status}</p>}
       </div>
     </div>
   )
