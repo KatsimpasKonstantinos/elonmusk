@@ -26,7 +26,6 @@ function App() {
 
   useEffect(() => {
     fetch(workerURL, { method: 'GET' })
-      .then(res => res.json())
       .then(data => setCounter(data.count ?? '?'));
   }, []);
 
