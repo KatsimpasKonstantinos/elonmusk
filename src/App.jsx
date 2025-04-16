@@ -49,7 +49,7 @@ function App() {
       <div className='form'>
         <h2>Is Elon Musk dead?</h2>
         <h1>No</h1>
-        <p>People Waiting: <span id="counter">...</span></p>
+        <p>People Waiting: <span id="counter">{counter}</span></p>
         <p>Be the first one to know when he is dead</p>
         <form id="waitlist-form">
           <input type="email" name="email" placeholder="Your email..." required />
