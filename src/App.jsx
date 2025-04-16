@@ -27,7 +27,7 @@ function App() {
   useEffect(() => {
     fetch(workerURL)
       .then(res => res.json())
-      .then(data => setCount(data.count ?? '?'));
+      .then(data => setCounter(data.count ?? '?'));
   }, []);
 
   return (
