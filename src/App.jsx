@@ -75,6 +75,7 @@ function App() {
   function form() {
     return (<>
       <p>Be the first one to know when he is dead</p>
+      <p className='smalltext'>Experts predict that signing up reduces Elon Musks lifespan by 1 second</p>
       <form id="waitlist-form" onSubmit={handleSubmit}>
         <input
           type="email"

@@ -40,6 +40,12 @@
   outline: 8px solid rgba(0, 0, 0, 1);
 }
 
+.smalltext {
+  font-size: 10px;
+  color: #ccc;
+  text-align: center;
+}
+
 form {
   display: flex;
   flex-direction: column;
