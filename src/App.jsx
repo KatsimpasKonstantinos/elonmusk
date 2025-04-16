@@ -25,7 +25,7 @@ function App() {
   const workerURL = "https://elonmuskdeathwaiters.konsti032003.workers.dev/"
 
   useEffect(() => {
-    fetch(workerURL)
+    fetch(workerURL, { method: 'GET' })
       .then(res => res.json())
       .then(data => setCounter(data.count ?? '?'));
   }, []);
