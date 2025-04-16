@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useEffect } from 'react'
 import './App.css'
 
 import cat from './assets/cat.webp'
@@ -13,7 +14,20 @@ import ogar from './assets/ogar.webp'
 import sink from './assets/sink.webp'
 import wario from './assets/wario.webp'
 import weed from './assets/weed.webp'
-import { useEffect } from 'react'
+
+import cat_cross from './assets/cat_cross.webp'
+import cheese_cross from './assets/cheese_cross.webp'
+import cum_cross from './assets/cum_cross.webp'
+import cumming_cross from './assets/cumming_cross.webp'
+import devil_cross from './assets/devil_cross.webp'
+import hacked_cross from './assets/hacked_cross.webp'
+import hitler_cross from './assets/hitler_cross.webp'
+import noise_cross from './assets/noise_cross.webp'
+import ogar_cross from './assets/ogar_cross.webp'
+import sink_cross from './assets/sink_cross.webp'
+import wario_cross from './assets/wario_cross.webp'
+import weed_cross from './assets/weed_cross.webp'
+
 
 function App() {
   const [email, setEmail] = useState('')
@@ -97,18 +111,36 @@ function App() {
   return (
     <div className="App">
       <div className='grid'>
-        <img src={cat} alt="cat" className='image' />
-        <img src={cheese} alt="cheese" className='image' />
-        <img src={cum} alt="cum" className='image' />
-        <img src={cumming} alt="cumming" className='image' />
-        <img src={devil} alt="devil" className='image' />
-        <img src={hacked} alt="hacked" className='image' />
-        <img src={hitler} alt="hitler" className='image' />
-        <img src={noise} alt="noise" className='image' />
-        <img src={ogar} alt="ogar" className='image' />
-        <img src={sink} alt="sink" className='image' />
-        <img src={wario} alt="wario" className='image' />
-        <img src={weed} alt="weed" className='image' />
+        {signedup ?
+          <>
+            <img src={cat_cross} alt="cat" className='image' />
+            <img src={cheese_cross} alt="cheese" className='image' />
+            <img src={cum_cross} alt="cum" className='image' />
+            <img src={cumming_cross} alt="cumming" className='image' />
+            <img src={devil_cross} alt="devil" className='image' />
+            <img src={hacked_cross} alt="hacked" className='image' />
+            <img src={hitler_cross} alt="hitler" className='image' />
+            <img src={noise_cross} alt="noise" className='image' />
+            <img src={ogar_cross} alt="ogar" className='image' />
+            <img src={sink_cross} alt="sink" className='image' />
+            <img src={wario_cross} alt="wario" className='image' />
+            <img src={weed_cross} alt="weed" className='image' />
+          </> :
+          <>
+            <img src={cat} alt="cat" className='image' />
+            <img src={cheese} alt="cheese" className='image' />
+            <img src={cum} alt="cum" className='image' />
+            <img src={cumming} alt="cumming" className='image' />
+            <img src={devil} alt="devil" className='image' />
+            <img src={hacked} alt="hacked" className='image' />
+            <img src={hitler} alt="hitler" className='image' />
+            <img src={noise} alt="noise" className='image' />
+            <img src={ogar} alt="ogar" className='image' />
+            <img src={sink} alt="sink" className='image' />
+            <img src={wario} alt="wario" className='image' />
+            <img src={weed} alt="weed" className='image' />
+          </>}
+
       </div>
       <div className='form'>
         <h2>Is Elon Musk dead?</h2>
