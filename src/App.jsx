@@ -27,6 +27,9 @@ import ogar_cross from './assets/ogar_cross.webp'
 import sink_cross from './assets/sink_cross.webp'
 import wario_cross from './assets/wario_cross.webp'
 import weed_cross from './assets/weed_cross.webp'
+import ImageShot from './ImageShot'
+
+import gunSound from './assets/gun.mp3'
 
 
 function App() {
@@ -104,50 +107,75 @@ function App() {
     </>)
   }
 
-  function test() {
-    return (<p>Test</p>)
+  function shot(element) {
+    console.log(this);
+  }
+
+  const audio = new Audio(gunSound);
+
+
+  const rotateGrid = () => {
+    const grid = document.querySelector('.grid');
+    const randomRotation = Math.floor(Math.random() * 360);
+    grid.style.transform = `rotate(${randomRotation}deg)`;
+    audio.play
+  };
+
+  const rotateForm = () => {
+    const form = document.querySelector('.form');
+    const randomRotation = Math.floor(Math.random() * 360);
+    const randomX = Math.floor(Math.random() * 200) - 10; // Random movement in X direction
+    const randomY = Math.floor(Math.random() * 200) - 10; // Random movement in Y direction
+    form.style.transform = `rotate(${randomRotation}deg) translate(${randomX}px, ${randomY}px)`;
+    form.style.transform = `rotate(${randomRotation}deg)`;
+    audio.play();
   }
 
   return (
-    <div className="App">
-      <div className='grid'>
-        {signedup ?
-          <>
-            <img src={cat_cross} alt="cat" className='image' />
-            <img src={cheese_cross} alt="cheese" className='image' />
-            <img src={cum_cross} alt="cum" className='image' />
-            <img src={cumming_cross} alt="cumming" className='image' />
-            <img src={devil_cross} alt="devil" className='image' />
-            <img src={hacked_cross} alt="hacked" className='image' />
-            <img src={hitler_cross} alt="hitler" className='image' />
-            <img src={noise_cross} alt="noise" className='image' />
-            <img src={ogar_cross} alt="ogar" className='image' />
-            <img src={sink_cross} alt="sink" className='image' />
-            <img src={wario_cross} alt="wario" className='image' />
-            <img src={weed_cross} alt="weed" className='image' />
-          </> :
-          <>
-            <img src={cat} alt="cat" className='image' />
-            <img src={cheese} alt="cheese" className='image' />
-            <img src={cum} alt="cum" className='image' />
-            <img src={cumming} alt="cumming" className='image' />
-            <img src={devil} alt="devil" className='image' />
-            <img src={hacked} alt="hacked" className='image' />
-            <img src={hitler} alt="hitler" className='image' />
-            <img src={noise} alt="noise" className='image' />
-            <img src={ogar} alt="ogar" className='image' />
-            <img src={sink} alt="sink" className='image' />
-            <img src={wario} alt="wario" className='image' />
-            <img src={weed} alt="weed" className='image' />
-          </>}
+    <div
+      className="App"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) {
+          rotateGrid();
+        }
+      }}
+    >
+      <div
+        className='grid'
+        onClick={(e) => {
+          if (e.target === e.currentTarget) {
+            rotateGrid();
+          }
+        }}
+      >
+        <>
+          <ImageShot image={cat} imageShot={cat_cross} />
+          <ImageShot image={cheese} imageShot={cheese_cross} />
+          <ImageShot image={cum} imageShot={cum_cross} />
+          <ImageShot image={cumming} imageShot={cumming_cross} />
+          <ImageShot image={devil} imageShot={devil_cross} />
+          <ImageShot image={hacked} imageShot={hacked_cross} />
 
-      </div>
-      <div className='form'>
-        <h2>Is Elon Musk dead?</h2>
-        <h1>No</h1>
-        <p>People Waiting: <span id="counter">{counter}</span></p>
-        {signedup ? "" : form()}
-        {status && <p>{status}</p>}
+          <ImageShot image={hitler} imageShot={hitler_cross} />
+          <ImageShot image={noise} imageShot={noise_cross} />
+          <ImageShot image={ogar} imageShot={ogar_cross} />
+          <ImageShot image={sink} imageShot={sink_cross} />
+          <ImageShot image={wario} imageShot={wario_cross} />
+          <ImageShot image={weed} imageShot={weed_cross} />
+        </>
+        <div
+          className='form'
+          onClick={(e) => {
+            e.stopPropagation();
+            rotateForm();
+          }}
+        >
+          <h2>Is Elon Musk dead?</h2>
+          <h1>No</h1>
+          <p>People Waiting: <span id="counter">{counter}</span></p>
+          {signedup ? "" : form()}
+          {status && <p>{status}</p>}
+        </div>
       </div>
     </div>
   )
