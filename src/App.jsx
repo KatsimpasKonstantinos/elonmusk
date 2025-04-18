@@ -101,7 +101,8 @@ function App() {
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-        />
+          style={{color: "black", backgroundColor: "white"}}
+        /> 
         <button type="submit">Join Waitlist</button>
       </form>
     </>)
